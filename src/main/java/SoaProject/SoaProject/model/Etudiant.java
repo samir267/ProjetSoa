@@ -5,12 +5,14 @@ import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Entity
 @Table(name="Etudiant")
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
@@ -29,8 +31,7 @@ public class Etudiant {
     private String classe;
     private String adresse;
 
-    public Etudiant() {
-    }
+    
 
     
 }
