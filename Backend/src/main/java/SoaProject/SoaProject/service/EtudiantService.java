@@ -20,10 +20,19 @@ public class EtudiantService {
         this.etudiantRepository = etudiantRepository;
     }
 
-    public Etudiant createEtudiant(Etudiant etudiant) {
+
+    public Etudiant createEtudiant(Etudiant etudiant) throws Exception {
+        Etudiant existingEtudiant = etudiantRepository.findByEmail(etudiant.getEmail());
+    
+        if (existingEtudiant != null) {
+            throw new Exception("Email already exists.");
+        }
+    
         return etudiantRepository.save(etudiant);
     }
     
+    
+
 
     
     public List<Etudiant> getAllEtudiants() {

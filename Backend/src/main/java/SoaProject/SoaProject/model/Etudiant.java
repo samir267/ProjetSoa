@@ -27,7 +27,12 @@ public class Etudiant {
     
     private String nom;
     private String prenom;
+
+    private String email;
+
+    private Long tel;
     private Long age;
+
     private String classe;
     private String adresse;
 
