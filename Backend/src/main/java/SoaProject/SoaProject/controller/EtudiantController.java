@@ -32,6 +32,7 @@ public class EtudiantController {
     }
 
     @PostMapping("/create")
+
     public ResponseEntity<?> createEtudiant(@RequestBody Etudiant etudiant) {
         try {
             Etudiant createdEtudiant = etudiantService.createEtudiant(etudiant);
@@ -41,6 +42,7 @@ public class EtudiantController {
         }
     }
     
+
 
     @GetMapping("/getAll")
     public List<Etudiant> getAllEtudiants() {

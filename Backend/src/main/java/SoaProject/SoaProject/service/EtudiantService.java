@@ -20,6 +20,7 @@ public class EtudiantService {
         this.etudiantRepository = etudiantRepository;
     }
 
+
     public Etudiant createEtudiant(Etudiant etudiant) throws Exception {
         Etudiant existingEtudiant = etudiantRepository.findByEmail(etudiant.getEmail());
     
@@ -31,6 +32,7 @@ public class EtudiantService {
     }
     
     
+
 
     
     public List<Etudiant> getAllEtudiants() {
