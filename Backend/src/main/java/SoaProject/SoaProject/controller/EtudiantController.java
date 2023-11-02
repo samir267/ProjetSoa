@@ -32,10 +32,15 @@ public class EtudiantController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Etudiant> createEtudiant(@RequestBody Etudiant etudiant) {
-    Etudiant createdEtudiant = etudiantService.createEtudiant(etudiant);
-    return ResponseEntity.status(HttpStatus.CREATED).body(createdEtudiant);
-}
+    public ResponseEntity<?> createEtudiant(@RequestBody Etudiant etudiant) {
+        try {
+            Etudiant createdEtudiant = etudiantService.createEtudiant(etudiant);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdEtudiant);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Email already exists");
+        }
+    }
+    
 
     @GetMapping("/getAll")
     public List<Etudiant> getAllEtudiants() {
