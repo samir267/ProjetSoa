@@ -6,5 +6,6 @@ export class Etudiant{
         tel!:string;
         classe!:string;
         email!:string;
+        absent!:boolean;
     
 }

@@ -21,11 +21,10 @@ public class EtudiantService {
     }
 
 
-    public Etudiant createEtudiant(Etudiant etudiant) throws Exception {
-        Etudiant existingEtudiant = etudiantRepository.findByEmail(etudiant.getEmail());
-    
-        if (existingEtudiant != null) {
-            throw new Exception("Email already exists.");
+    public Etudiant createEtudiant(Etudiant etudiant) {
+        // Check if an Etudiant with the same email already exists
+        if (etudiantRepository.findByEmail(etudiant.getEmail()) != null) {
+            throw new RuntimeException("Email already exists"); // You can create a custom exception class for better error handling
         }
     
         return etudiantRepository.save(etudiant);
@@ -46,11 +45,27 @@ public class EtudiantService {
 
 
 
-
-    public Etudiant updateEtudiant(Long id, Etudiant etudiant) {
-        if (etudiantRepository.existsById(id)) {
-            etudiant.setId(id);
-            return etudiantRepository.save(etudiant);
+    public Etudiant updateEtudiant(Long id, Etudiant updatedEtudiant) {
+        Optional<Etudiant> existingEtudiantOptional = etudiantRepository.findById(id);
+    
+        if (existingEtudiantOptional.isPresent()) {
+            Etudiant existingEtudiant = existingEtudiantOptional.get();
+            String updatedEmail = updatedEtudiant.getEmail();
+    
+            // Check if the updated email is unique (not associated with another Etudiant)
+            if (updatedEmail == null || updatedEmail.equals(existingEtudiant.getEmail())
+                    || etudiantRepository.findByEmail(updatedEmail) == null) {
+                existingEtudiant.setNom(updatedEtudiant.getNom());
+                existingEtudiant.setPrenom(updatedEtudiant.getPrenom());
+                existingEtudiant.setAge(updatedEtudiant.getAge());
+                existingEtudiant.setClasse(updatedEtudiant.getClasse());
+                existingEtudiant.setAdresse(updatedEtudiant.getAdresse());
+                existingEtudiant.setEmail(updatedEtudiant.getEmail());
+    
+                return etudiantRepository.save(existingEtudiant);
+            } else {
+                throw new RuntimeException("Email already exists");
+            }
         } else {
             throw new EntityNotFoundException("Etudiant with ID " + id + " not found");
         }
@@ -61,6 +76,23 @@ public class EtudiantService {
     public void deleteEtudiant(Long id) {
         if (etudiantRepository.existsById(id)) {
             etudiantRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("Etudiant with ID " + id + " not found");
+        }
+    }
+    public Etudiant toggleAbsentStatus(Long id) {
+        Optional<Etudiant> existingEtudiantOptional = etudiantRepository.findById(id);
+
+        if (existingEtudiantOptional.isPresent()) {
+            Etudiant existingEtudiant = existingEtudiantOptional.get();
+            
+            // Check if the "absent" field is null, and initialize it to false if it is.
+            if (existingEtudiant.getAbsent() == null) {
+                existingEtudiant.setAbsent(false);
+            }
+            
+            existingEtudiant.setAbsent(!existingEtudiant.getAbsent()); // Toggle the absent status
+            return etudiantRepository.save(existingEtudiant);
         } else {
             throw new EntityNotFoundException("Etudiant with ID " + id + " not found");
         }

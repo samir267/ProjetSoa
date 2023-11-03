@@ -1,0 +1,9 @@
+/* Change the color of MatSlideToggle when checked (active) */
+.mat-slide-toggle.mat-checked {
+  background-color: #4CAF50; /* Green color */
+}
+
+/* Change the color of MatSlideToggle when unchecked (inactive) */
+.mat-slide-toggle.mat-checked.mat-disabled {
+  background-color: #E74C3C; /* Red color for disabled toggle */
+}

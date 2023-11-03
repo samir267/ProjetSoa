@@ -8,19 +8,20 @@ import { EtudiantService } from 'src/app/Service/etudiant.service';
   styleUrls: ['./etudiants.component.css']
 })
 export class EtudiantsComponent {
+   search!:string;
+   etud:Etudiant[]=[]
 
   constructor(private etudServ:EtudiantService){}
 
   ngOnInit(){
     this.getAll();
   }
-  etud:Etudiant[]=[]
   getAll(){
     this.etudServ.GetAllEtudiants().subscribe((res:any)=>{
       this.etud=res;
 
     },        (      error: any)=>{console.log(error)})
-    
+
   }
 
 
@@ -29,7 +30,7 @@ export class EtudiantsComponent {
     this.etudServ.DeleteEtudiant(id).subscribe(
       () => {
         console.log("Etudiant deleted successfully");
-        this.getAll(); 
+        this.getAll();
       },
       (error) => {
         console.error("Erreur lors de la suppression du Etudiant", error);
@@ -38,6 +39,49 @@ export class EtudiantsComponent {
   }
 }
 
+generateAndDownloadCSV(etudiants: Etudiant[]) {
+  const csvContent = this.convertArrayToCSV(etudiants);
+
+  // Create a blob from the CSV content
+  const blob = new Blob([csvContent], { type: 'text/csv' });
+
+  // Create a download link and trigger the download
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'etudiants.csv';
+  document.body.appendChild(a);
+  a.click();
+  window.URL.revokeObjectURL(url);
+}
+
+convertArrayToCSV(data: Etudiant[]): string {
+  const header = ['ID', 'Nom', 'Prenom', 'Adresse', 'Tel', 'Classe', 'Email'];
+  const rows = [header];
+
+  for (const etudiant of data) {
+    const row = [
+      etudiant.id.toString(),
+      etudiant.nom,
+      etudiant.prenom,
+      etudiant.adresse,
+      etudiant.tel,
+      etudiant.classe,
+      etudiant.email
+    ];
+    rows.push(row);
+  }
+
+  return rows.map(row => row.join(',')).join('\n');
+}
 
 
+toggleAbsence(id: number) {
+  // Toggle the 'absent' status on the server using your service
+this.etudServ.absent(id).subscribe(res=>{
+  console.log(res)
+})
+
+
+}
 }

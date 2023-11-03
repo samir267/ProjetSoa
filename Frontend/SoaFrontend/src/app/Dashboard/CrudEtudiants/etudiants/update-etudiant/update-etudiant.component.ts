@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Etudiant } from 'src/app/Models/Etudiant';
 import { EtudiantService } from 'src/app/Service/etudiant.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-update-etudiant',
   templateUrl: './update-etudiant.component.html',
@@ -31,6 +31,7 @@ export class UpdateEtudiantComponent {
     this.etudServ.GetById(this.id).subscribe(
       (response: any) => {
         this.etudiantData = response;
+        console.log(this.etudiantData)
       },
       (error: any) => {
         console.error('Error loading Etudiant data:', error);
@@ -47,7 +48,10 @@ export class UpdateEtudiantComponent {
         console.log('Etudiant updated successfully:', response);
       },
       (error: any) => {
-        console.error('Error updating Etudiant:', error);
+        Swal.fire({  title: 'Error',
+        text: error.error.message,
+        icon: 'error',})
+      
       }
     );
   }

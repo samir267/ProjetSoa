@@ -1,6 +1,16 @@
 <div style="margin-top: 30px;">
-    <button type="button" class="btn btn-dark" style="margin-bottom: 20px;" [routerLink]="['/new-etudiant']">Ajouter Etudiant</button>
-  
+
+
+  <div class="row">
+    <div class="col" style="margin-bottom: 20px;">
+      <button type="button" class="btn btn-dark"  [routerLink]="['/new-etudiant']">Ajouter Etudiant</button>
+      <button type="button" class="btn btn-dark" (click)="generateAndDownloadCSV(etud)">Importer csv</button>
+    </div>
+    <div class="col">
+      <input type="text" class="form-control" placeholder="Search..." name="search" [(ngModel)]="search">
+    </div>
+  </div>
+
     <table class="table table-dark table-striped">
       <thead>
         <tr>
@@ -11,12 +21,13 @@
           <th scope="col">Classe</th>
           <th scope="col">tel</th>
           <th scope="col">email</th>
+          <th scope="col">Absense</th>
           <th scope="col">Gerer</th>
 
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let student of etud; let i = index">
+        <tr *ngFor="let student of etud|etudiant:search; let i = index">
           <th scope="row">{{ i + 1 }}</th>
           <td>{{ student.nom }}</td>
           <td>{{ student.prenom }}</td>
@@ -24,6 +35,12 @@
           <td>{{ student.classe }}</td>
           <td>{{ student.tel }}</td>
           <td>{{ student.email }}</td>
+          <td>
+            <mat-slide-toggle
+            [checked]="student.absent"
+            (change)="toggleAbsence(student.id)"
+          >
+          </mat-slide-toggle>    </td>
           <td><button type="button" class="btn btn-light" [routerLink]="['/update-etudiant', student.id]">Modifier</button>
             <button type="button" class="btn btn-danger"(click)="deleteEtudiant(student.id,student.nom)">Supprimer</button>
 
@@ -33,4 +50,3 @@
       </tbody>
     </table>
   </div>
-  

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Etudiant } from '../Models/Etudiant';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class EtudiantService {
-  private URL ="http://localhost:8087/"
-
+  private URL =environment.apiUrl;
   constructor(private http:HttpClient) { }
 
   CreateNewEtudiant(Etudiant:Etudiant){
@@ -22,7 +22,7 @@ export class EtudiantService {
   UpdateEtudiant(id: number,Etudiant:Etudiant) {
     return this.http.put(this.URL + "etudiants/update/" + id,Etudiant);
   }
-  
+
 
   GetById(id :number){
     return this.http.get(this.URL+"etudiants/getById/"+id)
@@ -30,5 +30,8 @@ export class EtudiantService {
 
   DeleteEtudiant(id :number){
     return this.http.delete(this.URL+"etudiants/delete/"+id, {responseType : 'text'})
+  }
+  absent(id:number){
+    return this.http.patch(this.URL+"etudiants/presence/"+id,{})
   }
 }

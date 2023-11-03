@@ -23,24 +23,34 @@ public class EnseignantService {
     }
 
     public Enseignant createEnseignant(Enseignant enseignant) {
+        if (enseignantRepository.findByEmail(enseignant.getEmail()) != null) {
+            throw new RuntimeException("Email already exists"); // You can create a custom exception class for better error handling
+        }
         return enseignantRepository.save(enseignant);
     }
 
     public Enseignant updateEnseignant(Long id, Enseignant updatedEnseignant) {
         Optional<Enseignant> existingEnseignant = enseignantRepository.findById(id);
-
+    
         if (existingEnseignant.isPresent()) {
             Enseignant enseignant = existingEnseignant.get();
-            enseignant.setNom(updatedEnseignant.getNom());
-            enseignant.setPrenom(updatedEnseignant.getPrenom());
-            enseignant.setAge(updatedEnseignant.getAge());
-            enseignant.setMatiere(updatedEnseignant.getMatiere());
-            enseignant.setAdresse(updatedEnseignant.getAdresse());
-            enseignant.setSalaire(updatedEnseignant.getSalaire());
-
-            return enseignantRepository.save(enseignant);
+    
+            // Check if the updated email is the same as the existing one or if it doesn't exist in the database
+            if (updatedEnseignant.getEmail() == null || updatedEnseignant.getEmail().equals(enseignant.getEmail()) || enseignantRepository.findByEmail(updatedEnseignant.getEmail()) == null) {
+                enseignant.setNom(updatedEnseignant.getNom());
+                enseignant.setPrenom(updatedEnseignant.getPrenom());
+                enseignant.setAge(updatedEnseignant.getAge());
+                enseignant.setMatiere(updatedEnseignant.getMatiere());
+                enseignant.setAdresse(updatedEnseignant.getAdresse());
+                enseignant.setSalaire(updatedEnseignant.getSalaire());
+                enseignant.setEmail(updatedEnseignant.getEmail());
+    
+                return enseignantRepository.save(enseignant);
+            } else {
+                throw new RuntimeException("Email already exists");
+            }
         } else {
-            return null; 
+            return null;
         }
     }
 
