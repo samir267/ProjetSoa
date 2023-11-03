@@ -8,5 +8,7 @@ import SoaProject.SoaProject.model.Etudiant;
         Etudiant findByEmail(String email );
         boolean existsByEmail(String email);
 
+
+
 }
 
