@@ -1,0 +1,42 @@
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 30px;">
+    <form style="width: 500px;" (ngSubmit)="CreateNewEnseignant()">
+      <legend style="text-align: center; margin-bottom: 20px;">Nouveau Enseignant</legend>
+  
+      <div class="mb-3">
+        <label for="Nom" class="form-label">Nom</label>
+        <input type="text" class="form-control" id="Nom" [(ngModel)]="newEnseignant.nom" name="nom">
+
+      </div>
+  
+      <div class="mb-3">
+        <label for="Prénom" class="form-label">Prénom</label>
+        <input type="text" class="form-control" id="Prenom" [(ngModel)]="newEnseignant.prenom" name="prenom">
+      </div>
+  
+      <div class="mb-3">
+        <label for="Classe" class="form-label">Age</label>
+        <input type="text" class="form-control" id="Classe" [(ngModel)]="newEnseignant.age" name="age">
+      </div>
+      <div class="mb-3">
+        <label for="Email" class="form-label">matiere</label>
+        <input type="email" class="form-control" id="Email" [(ngModel)]="newEnseignant.matiere" name="matiere">
+      </div>
+      <div class="mb-3">
+        <label for="Adresse" class="form-label">Salaire</label>
+        <input type="text" class="form-control" id="Adresse" [(ngModel)]="newEnseignant.salaire" name="salaire">
+      </div>
+      <div class="mb-3">
+        <label for="Adresse" class="form-label">Adresse</label>
+        <input type="text" class="form-control" id="Adresse" [(ngModel)]="newEnseignant.adresse" name="adresse">
+      </div>
+
+      <div class="mb-3">
+        <label for="Adresse" class="form-label">Email</label>
+        <input type="mail" class="form-control" id="Adresse" [(ngModel)]="newEnseignant.email" name="email">
+      </div>
+     
+     
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  

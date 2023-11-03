@@ -3,7 +3,7 @@ export class Etudiant{
         nom!:string;
         prenom!:string;
         adresse!:string;
-        tel!:string;
+        tel!:number;
         classe!:string;
         email!:string;
     

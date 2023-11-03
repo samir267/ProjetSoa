@@ -3,6 +3,7 @@ package SoaProject.SoaProject.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,8 +59,7 @@ public class EtudiantController {
     }
 }
 
-
-    @PutMapping("/update/{id}")
+/*@PutMapping("/update/{id}")
     public ResponseEntity<Etudiant> updateEtudiant(@PathVariable Long id, @RequestBody Etudiant etudiant) {
     try {
         Etudiant updatedEtudiant = etudiantService.updateEtudiant(id, etudiant);
@@ -67,8 +67,20 @@ public class EtudiantController {
     } catch (EntityNotFoundException e) {
         return ResponseEntity.notFound().build();
     }
-}
+} */
     
+    
+  @PutMapping("/update/{id}")
+    public ResponseEntity<Etudiant> updateEtudiant(@PathVariable Long id, @RequestBody Etudiant etudiant) {
+        try {
+            Etudiant updatedEtudiant = etudiantService.updateEtudiant(id, etudiant);
+            return new ResponseEntity<>(updatedEtudiant, HttpStatus.OK);
+        } catch (EntityNotFoundException e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (EntityExistsException e) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+    }
 
 
     @DeleteMapping("/delete/{id}")

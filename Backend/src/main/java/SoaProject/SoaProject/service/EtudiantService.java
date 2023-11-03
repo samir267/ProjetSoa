@@ -3,6 +3,7 @@ package SoaProject.SoaProject.service;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,16 +45,30 @@ public class EtudiantService {
 
 
 
-
-    public Etudiant updateEtudiant(Long id, Etudiant etudiant) {
+/*public Etudiant updateEtudiant(Long id, Etudiant etudiant) {
         if (etudiantRepository.existsById(id)) {
             etudiant.setId(id);
             return etudiantRepository.save(etudiant);
         } else {
             throw new EntityNotFoundException("Etudiant with ID " + id + " not found");
         }
-    }
+    } */
+    
+   
 
+    public Etudiant updateEtudiant(Long id, Etudiant etudiant) {
+    if (etudiantRepository.existsById(id)) {
+        Etudiant existingEtudiant = etudiantRepository.findById(id).get();
+        if (!existingEtudiant.getEmail().equals(etudiant.getEmail()) && etudiantRepository.existsByEmail(etudiant.getEmail())) {
+            throw new EntityExistsException("E-mail already exists in the database");
+        }
+
+        etudiant.setId(id);
+        return etudiantRepository.save(etudiant);
+    } else {
+        throw new EntityNotFoundException("Etudiant with ID " + id + " not found");
+    }
+}
 
 
     public void deleteEtudiant(Long id) {

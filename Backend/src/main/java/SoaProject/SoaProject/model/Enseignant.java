@@ -26,7 +26,7 @@ public class Enseignant {
     private String nom;
     private String prenom;
     private Long age;
-
+    private String email;
     private String matiere;
     private String adresse;
     private Long salaire;

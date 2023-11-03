@@ -3,10 +3,14 @@ package SoaProject.SoaProject.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import SoaProject.SoaProject.model.Enseignant;
+import SoaProject.SoaProject.model.Etudiant;
 import SoaProject.SoaProject.repository.EnseignantRepo;
 
 import java.util.List;
 import java.util.Optional;
+
+import javax.persistence.EntityExistsException;
+import javax.persistence.EntityNotFoundException;
 
 @Service
 public class EnseignantService {
@@ -22,27 +26,30 @@ public class EnseignantService {
         return enseignantRepository.findById(id);
     }
 
-    public Enseignant createEnseignant(Enseignant enseignant) {
+     public Enseignant createEnseignant(Enseignant enseignant) throws Exception {
+        Enseignant existingEtudiant = enseignantRepository.findByEmail(enseignant.getEmail());
+    
+        if (existingEtudiant != null) {
+            throw new Exception("Email already exists.");
+        }
+    
         return enseignantRepository.save(enseignant);
     }
 
-    public Enseignant updateEnseignant(Long id, Enseignant updatedEnseignant) {
-        Optional<Enseignant> existingEnseignant = enseignantRepository.findById(id);
+   public Enseignant updateEnseignant(Long id, Enseignant enseignant) {
+        if (enseignantRepository.existsById(id)) {
+            Enseignant existingEnseignant = enseignantRepository.findById(id).get();
+            if (!existingEnseignant.getEmail().equals(enseignant.getEmail()) && enseignantRepository.existsByEmail(enseignant.getEmail())) {
+                throw new EntityExistsException("E-mail already exists in the database");
+            }
 
-        if (existingEnseignant.isPresent()) {
-            Enseignant enseignant = existingEnseignant.get();
-            enseignant.setNom(updatedEnseignant.getNom());
-            enseignant.setPrenom(updatedEnseignant.getPrenom());
-            enseignant.setAge(updatedEnseignant.getAge());
-            enseignant.setMatiere(updatedEnseignant.getMatiere());
-            enseignant.setAdresse(updatedEnseignant.getAdresse());
-            enseignant.setSalaire(updatedEnseignant.getSalaire());
-
+            enseignant.setId(id);
             return enseignantRepository.save(enseignant);
         } else {
-            return null; 
+            throw new EntityNotFoundException("Enseignant with ID " + id + " not found");
         }
     }
+
 
     public void deleteEnseignant(Long id) {
         enseignantRepository.deleteById(id);

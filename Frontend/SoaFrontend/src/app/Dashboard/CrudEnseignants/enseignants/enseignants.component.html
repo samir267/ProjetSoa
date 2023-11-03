@@ -1,0 +1,36 @@
+<div style="margin-top: 30px;">
+    <button type="button" class="btn btn-dark" style="margin-bottom: 20px;" [routerLink]="['/new-enseignant']">Ajouter Enseignant</button>
+  
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nom</th>
+          <th scope="col">Prénom</th>
+          <th scope="col">Adresse</th>
+          <th scope="col">age</th>
+          <th scope="col">matiere</th>
+          <th scope="col">Email</th>
+          <th scope="col">Gerer</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ens of ens; let i = index">
+          <th scope="row">{{ i + 1 }}</th>
+          <td>{{ ens.nom }}</td>
+          <td>{{ ens.prenom }}</td>
+          <td>{{ ens.adresse }}</td>
+          <td>{{ ens.age }}</td>
+          <td>{{ ens.matiere }}</td>
+          <td>{{ ens.email }}</td>
+          <td><button type="button" class="btn btn-light" [routerLink]="['/update-enseignant',ens.id]">Modifier</button>
+            <button type="button" class="btn btn-danger" (click)="deleteEnseignant(ens.id,ens.nom)">Supprimer</button>
+
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

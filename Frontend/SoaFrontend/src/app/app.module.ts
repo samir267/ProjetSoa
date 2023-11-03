@@ -9,6 +9,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EtudiantsComponent } from './Dashboard/CrudEtudiants/etudiants/etudiants.component';
 import { NewEtudiantComponent } from './Dashboard/CrudEtudiants/new-etudiant/new-etudiant.component';
 import { UpdateEtudiantComponent } from './Dashboard/CrudEtudiants/update-etudiant/update-etudiant.component';
+import { EnseignantsComponent } from './Dashboard/CrudEnseignants/enseignants/enseignants.component';
+import { NewEnseignantComponent } from './Dashboard/CrudEnseignants/new-enseignant/new-enseignant.component';
+import { UpdateEnseignantComponent } from './Dashboard/CrudEnseignants/update-enseignant/update-enseignant.component';
 
 
 
@@ -18,6 +21,9 @@ import { UpdateEtudiantComponent } from './Dashboard/CrudEtudiants/update-etudia
     EtudiantsComponent,
     NewEtudiantComponent,
     UpdateEtudiantComponent,
+    EnseignantsComponent,
+    NewEnseignantComponent,
+    UpdateEnseignantComponent,
     
   ],
   imports: [
