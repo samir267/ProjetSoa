@@ -5,6 +5,7 @@ import { NewEtudiantComponent } from './Dashboard/CrudEtudiants/etudiants/new-et
 import { UpdateEtudiantComponent } from './Dashboard/CrudEtudiants/etudiants/update-etudiant/update-etudiant.component';
 import { ListeEnseignantComponent } from './Dashboard/Enseignant/liste-enseignant/liste-enseignant.component';
 import { NewEnseignantComponent } from './Dashboard/Enseignant/new-enseignant/new-enseignant.component';
+import { UpdateEnseignantComponent } from './Dashboard/Enseignant/update-enseignant/update-enseignant.component';
 
 const routes: Routes = [
   {path:'etudiants',component:EtudiantsComponent},
@@ -12,7 +13,7 @@ const routes: Routes = [
   {path:'update-etudiant/:id', component: UpdateEtudiantComponent },
   {path:'enseignants',component:ListeEnseignantComponent},
   {path:'new-enseignant',component:NewEnseignantComponent},
-  {path:'update-enseignant/:id',component:NewEtudiantComponent},
+  {path:'update-enseignant/:id',component:UpdateEnseignantComponent},
 
 
 

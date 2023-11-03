@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class EnseignantService {
-  private baseUrl = environment.apiUrl;
+  private baseUrl = "http://localhost:8085/";
 
   constructor(private http: HttpClient) {}
 

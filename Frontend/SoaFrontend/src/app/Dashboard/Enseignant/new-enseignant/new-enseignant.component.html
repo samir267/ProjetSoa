@@ -1,1 +1,47 @@
-<p>new-enseignant works!</p>
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 30px;">
+  <form style="width: 500px;" [formGroup]="enseignantForm" (ngSubmit)="createNewEnseignant()">
+    <legend style="text-align: center; margin-bottom: 20px;">Nouveau Enseignant</legend>
+    <div class="mb-3">
+      <label for="Nom" class="form-label">Nom</label>
+      <input type="text" class="form-control" id="Nom" formControlName="nom"
+        [ngClass]="{'is-invalid': submitted && enseignantForm.controls['nom'].errors, 'is-valid': submitted && !enseignantForm.controls['nom'].errors}">
+    </div>
+
+    <div class="mb-3">
+      <label for="Prénom" class="form-label">Prénom</label>
+      <input type="text" class="form-control" id="Prenom" formControlName="prenom"
+        [ngClass]="{'is-invalid': submitted && enseignantForm.controls['prenom'].errors, 'is-valid': submitted && !enseignantForm.controls['prenom'].errors}">
+    </div>
+
+    <div class="mb-3">
+      <label for="Matière" class="form-label">Matière</label>
+      <input type="text" class="form-control" id="Matiere" formControlName="matiere"
+        [ngClass]="{'is-invalid': submitted && enseignantForm.controls['matiere'].errors, 'is-valid': submitted && !enseignantForm.controls['matiere'].errors}">
+    </div>
+
+    <div class="mb-3">
+      <label for="Email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="Email" name="email" formControlName="email"
+        [ngClass]="{'is-invalid': submitted && enseignantForm.controls['email'].errors, 'is-valid': submitted && !enseignantForm.controls['email'].errors}">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="Adresse" class="form-label">Adresse</label>
+      <input type="text" class="form-control" id="Adresse" name="adresse" formControlName="adresse"
+        [ngClass]="{'is-invalid': submitted && enseignantForm.controls['adresse'].errors, 'is-valid': submitted && !enseignantForm.controls['adresse'].errors}">
+    </div>
+
+    <div class="mb-3">
+      <label for="Téléphone" class="form-label">Téléphone</label>
+      <input type="number" class="form-control" id="Telephone" name="tel" formControlName="tel"
+        [ngClass]="{'is-invalid': submitted && enseignantForm.controls['tel'].errors, 'is-valid': submitted && !enseignantForm.controls['tel'].errors}">
+    </div>
+    <div class="mb-3">
+      <label for="sal" class="form-label">Salaire</label>
+      <input type="number" class="form-control" id="salaire" name="salaire" formControlName="salaire"
+        [ngClass]="{'is-invalid': submitted && enseignantForm.controls['salaire'].errors, 'is-valid': submitted && !enseignantForm.controls['salaire'].errors}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

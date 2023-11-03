@@ -16,6 +16,7 @@ import { EnseignantPipe } from './pipes/enseignant.pipe';
 import { UpdateEnseignantComponent } from './Dashboard/Enseignant/update-enseignant/update-enseignant.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -38,7 +39,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    ToastrModule.forRoot()
+
 
 
   ],

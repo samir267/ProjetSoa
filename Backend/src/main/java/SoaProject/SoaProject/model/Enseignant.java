@@ -30,7 +30,6 @@ public class Enseignant {
 
     private String nom;
     private String prenom;
-    private Long age;
 
     private String matiere;
     private String adresse;

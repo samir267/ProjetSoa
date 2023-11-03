@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Etudiant } from 'src/app/Models/Etudiant';
 import { EtudiantService } from 'src/app/Service/etudiant.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-etudiant',
@@ -15,8 +15,9 @@ export class NewEtudiantComponent {
   etudiantForm: FormGroup;
   submitted = false;
 
-  constructor(private etudServ: EtudiantService,private router: Router,private fb: FormBuilder) {
-    
+  constructor(private etudServ: EtudiantService,private router: Router,private fb: FormBuilder,
+    private toastr: ToastrService) {
+
       this.etudiantForm = this.fb.group({
         nom: ['', [Validators.required]],
         prenom: ['', [Validators.required]],
@@ -25,11 +26,11 @@ export class NewEtudiantComponent {
         adresse: ['', [Validators.required]],
         tel: ['', [Validators.required]],
       });
-    
-  
-  
+
+
+
   }
- 
+
   createNewEtudiant() {
     this.submitted = true;
 
@@ -41,15 +42,14 @@ export class NewEtudiantComponent {
 
       },
       (error: any) => {
-        console.error(error.error);
-        Swal.fire({  title: 'Error',
-        text: error.error,
-        icon: 'error',})
+      
+        this.toastr.error('error',error.error );
+
       }
     );
   }
   }
 
-  
+
 
 }

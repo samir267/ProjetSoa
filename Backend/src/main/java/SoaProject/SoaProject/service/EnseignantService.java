@@ -39,7 +39,6 @@ public class EnseignantService {
             if (updatedEnseignant.getEmail() == null || updatedEnseignant.getEmail().equals(enseignant.getEmail()) || enseignantRepository.findByEmail(updatedEnseignant.getEmail()) == null) {
                 enseignant.setNom(updatedEnseignant.getNom());
                 enseignant.setPrenom(updatedEnseignant.getPrenom());
-                enseignant.setAge(updatedEnseignant.getAge());
                 enseignant.setMatiere(updatedEnseignant.getMatiere());
                 enseignant.setAdresse(updatedEnseignant.getAdresse());
                 enseignant.setSalaire(updatedEnseignant.getSalaire());

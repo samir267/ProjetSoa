@@ -1,0 +1,29 @@
+<bean id="messageDispatcherServlet" class="org.springframework.ws.transport.http.MessageDispatcherServlet">
+    <property name="messageFactory" ref="messageFactory"/>
+</bean>
+
+<bean id="messageFactory" class="org.springframework.ws.soap.axiom.AxiomSoapMessageFactory">
+    <property name="payloadCaching" value="true"/>
+</bean>
+<!-- Example spring-ws configuration file: spring-ws-config.xml -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Define the endpoint mapping for your SOAP service -->
+    <bean class="org.springframework.ws.server.endpoint.mapping.PayloadRootQNameEndpointMapping">
+        <property name="mappings">
+            <props>
+                <prop key="{namespace}getAllAdmins">adminEndpoint</prop>
+                <prop key="{namespace}getAdminById">adminEndpoint</prop>
+                <prop key="{namespace}createAdmin">adminEndpoint</prop>
+                <prop key="{namespace}updateAdmin">adminEndpoint</prop>
+                <prop key="{namespace}deleteAdmin">adminEndpoint</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Define other beans and configurations here if needed -->
+
+</beans>

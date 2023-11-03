@@ -5,19 +5,19 @@
         <label for="Nom" class="form-label">Nom</label>
         <input type="text" class="form-control" id="Nom" formControlName="nom" [ngClass]="{'is-invalid': submitted && etudiantForm.controls['nom'].errors ,'is-valid': submitted && !etudiantForm.controls['nom'].errors}">
       </div>
-  
+
       <div class="mb-3">
         <label for="Prénom" class="form-label">Prénom</label>
         <input type="text" class="form-control" id="Prenom" formControlName="prenom" [ngClass]="{'is-invalid': submitted && etudiantForm.controls['prenom'].errors ,'is-valid': submitted && !etudiantForm.controls['prenom'].errors}">
-     
+
       </div>
-  
+
       <div class="mb-3">
         <label for="Classe" class="form-label">Classe</label>
         <input type="text" class="form-control" id="Classe" formControlName="classe"
-        [ngClass]="{'is-invalid': submitted && etudiantForm.controls['classe'].errors ,'is-valid': submitted && !etudiantForm.controls['classe'].errors}">     
+        [ngClass]="{'is-invalid': submitted && etudiantForm.controls['classe'].errors ,'is-valid': submitted && !etudiantForm.controls['classe'].errors}">
       </div>
-      
+
       <div class="mb-3">
         <label for="Email" class="form-label">Email</label>
         <input type="email" class="form-control" id="Email"  name="email" formControlName="email"
@@ -29,14 +29,13 @@
         <input type="text" class="form-control" id="Adresse"  name="adresse" formControlName="adresse"
         [ngClass]="{'is-invalid': submitted && etudiantForm.controls['adresse'].errors ,'is-valid': submitted && !etudiantForm.controls['adresse'].errors}">
       </div>
-  
+
       <div class="mb-3">
         <label for="Télephone" class="form-label">Télephone</label>
         <input type="number" class="form-control" id="Telephone"  name="tel" formControlName="tel"
         [ngClass]="{'is-invalid': submitted && etudiantForm.controls['tel'].errors ,'is-valid': submitted && !etudiantForm.controls['tel'].errors}">
       </div>
-  
+
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </div>
-  

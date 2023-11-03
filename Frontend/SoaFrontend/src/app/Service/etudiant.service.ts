@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class EtudiantService {
-  private URL =environment.apiUrl;
+  private URL ="http://localhost:8085/";
   constructor(private http:HttpClient) { }
 
   CreateNewEtudiant(Etudiant:Etudiant){

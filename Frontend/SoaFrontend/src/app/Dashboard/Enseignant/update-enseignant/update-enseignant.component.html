@@ -1,1 +1,37 @@
-<p>update-enseignant works!</p>
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 30px;">
+  <form style="width: 500px;" (ngSubmit)="updateEnseignant(ensData.id,ensData)">
+    <legend style="text-align: center; margin-bottom: 20px;">Mettre à jour Enseignant</legend>
+
+    <div class="mb-3">
+      <label for="Nom" class="form-label">Nom</label>
+      <input type="text" class="form-control" id="Nom" [(ngModel)]="ensData.nom" name="nom">
+
+    </div>
+
+    <div class="mb-3">
+      <label for="Prénom" class="form-label">Prénom</label>
+      <input type="text" class="form-control" id="Prenom" [(ngModel)]="ensData.prenom" name="prenom">
+    </div>
+
+    <div class="mb-3">
+      <label for="Email" class="form-label">matiere</label>
+      <input type="email" class="form-control" id="Email" [(ngModel)]="ensData.matiere" name="matiere">
+    </div>
+    <div class="mb-3">
+      <label for="Adresse" class="form-label">Salaire</label>
+      <input type="text" class="form-control" id="Adresse" [(ngModel)]="ensData.salaire" name="salaire">
+    </div>
+    <div class="mb-3">
+      <label for="Adresse" class="form-label">Adresse</label>
+      <input type="text" class="form-control" id="Adresse" [(ngModel)]="ensData.adresse" name="adresse">
+    </div>
+
+    <div class="mb-3">
+      <label for="Email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="Adresse" [(ngModel)]="ensData.email" name="email">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
