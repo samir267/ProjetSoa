@@ -53,10 +53,13 @@
 			<optional>true</optional>
 		</dependency>
 
-
 <dependency>
-	<groupId>wsdl4j</groupId>
-	<artifactId>wsdl4j</artifactId>
+    <groupId>org.springframework.ws</groupId>
+    <artifactId>spring-ws-core</artifactId>
+</dependency>
+<dependency>
+    <groupId>wsdl4j</groupId>
+    <artifactId>wsdl4j</artifactId>
 </dependency>
 
 		<dependency>

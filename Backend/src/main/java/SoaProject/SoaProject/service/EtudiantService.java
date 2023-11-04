@@ -97,4 +97,14 @@ public class EtudiantService {
             throw new EntityNotFoundException("Etudiant with ID " + id + " not found");
         }
     }
+    public long countEtudiants() {
+        return etudiantRepository.count();
+    }
+    public long countAbsentEtudiants() {
+        return etudiantRepository.countAbsentEtudiants();
+    }
+
+    public long countPresentEtudiants() {
+        return etudiantRepository.countPresentEtudiants();
+    }
 }

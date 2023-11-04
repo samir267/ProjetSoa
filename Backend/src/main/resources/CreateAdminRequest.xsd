@@ -1,0 +1,24 @@
+<!-- Updated AddEtudiantRequest.xsd -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://example.com/soap-web-service"
+           xmlns="http://example.com/soap-web-service"
+           elementFormDefault="qualified">
+    <xs:element name="CreateAdminRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Nom" type="xs:string"/>
+                <xs:element name="Prenom" type="xs:string"/>
+                <xs:element name="Email" type="xs:string"/>
+                <xs:element name="Tel" type="xs:string"/>
+                <!-- Add other etudiant attributes as needed -->
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="CreateAdminResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

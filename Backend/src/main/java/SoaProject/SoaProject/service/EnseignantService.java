@@ -56,4 +56,7 @@ public class EnseignantService {
     public void deleteEnseignant(Long id) {
         enseignantRepository.deleteById(id);
     }
+    public long countEnseignant() {
+        return enseignantRepository.count();
+    }
 }

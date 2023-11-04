@@ -31,4 +31,7 @@ export class EnseignantService {
   deleteEnseignant(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/enseignants/delete/${id}`);
   }
+  countEtudiants(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}enseignants/count`);
+  }
 }

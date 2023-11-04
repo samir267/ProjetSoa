@@ -55,4 +55,8 @@ public class EnseignantController {
         enseignantService.deleteEnseignant(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/count")
+public long countEtudiants() {
+    return enseignantService.countEnseignant();
+}
 }

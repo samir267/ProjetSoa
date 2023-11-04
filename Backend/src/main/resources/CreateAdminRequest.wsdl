@@ -1,0 +1,35 @@
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             targetNamespace="http://example.com/soap-web-service"
+             xmlns:tns="http://example.com/soap-web-service">
+ <message name="GetAdminRequest">
+        <part name="name" type="xsd:string"/>
+    </message>
+    <message name="GetAdminResponse">
+        <part name="greeting" type="xsd:string"/>
+    </message>
+    <portType name="AdminPortType">
+        <operation name="getAdmin">
+            <input message="tns:GetAdminRequest"/>
+            <output message="tns:GetAdminResponse"/>
+        </operation>
+    </portType>
+    <binding name="AdminBinding" type="tns:AdminPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="getAdmin">
+            <soap:operation soapAction="http://example.com/soap-web-service/getAdmin"/>
+            <input>
+                <soap:body use="literal"/>
+            </input>
+            <output>
+                <soap:body use="literal"/>
+            </output>
+        </operation>
+    </binding>
+    <service name="AdminService">
+        <port name="AdminPort" binding="tns:AdminBinding">
+            <soap:address location="http://localhost:8080/soap-api"/>
+        </port>
+    </service>
+</definitions>

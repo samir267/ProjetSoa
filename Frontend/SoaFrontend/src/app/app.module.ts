@@ -16,9 +16,10 @@ import { EnseignantPipe } from './pipes/enseignant.pipe';
 import { UpdateEnseignantComponent } from './Dashboard/Enseignant/update-enseignant/update-enseignant.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import { ToastrModule } from 'ngx-toastr';
+import { StatComponent } from './Dashboard/stat/stat.component';
 
-
+import { NgChartsModule } from 'ng2-charts';
+import { AdminComponent } from './Dashboard/admin/admin/admin.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,8 @@ import { ToastrModule } from 'ngx-toastr';
     NewEnseignantComponent,
     EnseignantPipe,
     UpdateEnseignantComponent,
+    StatComponent,
+    AdminComponent,
 
   ],
   imports: [
@@ -40,7 +43,8 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
-    ToastrModule.forRoot()
+    NgChartsModule
+
 
 
 

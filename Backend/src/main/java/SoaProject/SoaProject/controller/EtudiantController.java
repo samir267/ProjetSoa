@@ -1,6 +1,8 @@
 package SoaProject.SoaProject.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -88,5 +90,27 @@ public ResponseEntity<Etudiant> toggleAbsentStatus(@PathVariable Long id) {
     Etudiant updatedEtudiant = etudiantService.toggleAbsentStatus(id);
     return ResponseEntity.ok(updatedEtudiant);
 }
+@GetMapping("/count")
+public long countEtudiants() {
+    return etudiantService.countEtudiants();
+}
 
+    @GetMapping("/absencePercentage")
+    public Map<String, Double> getAbsenceAndPresencePercentage() {
+        Map<String, Double> percentages = new HashMap<>();
+        long totalEtudiants = etudiantService.countEtudiants();
+        long absentEtudiants = etudiantService.countAbsentEtudiants();
+
+        if (totalEtudiants == 0) {
+            percentages.put("absent", 0.0);
+            percentages.put("present", 0.0);
+        } else {
+            double absentPercentage = ((double) absentEtudiants / totalEtudiants) * 100.0;
+            double presentPercentage = 100.0 - absentPercentage;
+            percentages.put("absent", absentPercentage);
+            percentages.put("present", presentPercentage);
+        }
+
+        return percentages;
+    }
 }

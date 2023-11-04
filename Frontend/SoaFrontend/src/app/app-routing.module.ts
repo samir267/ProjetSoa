@@ -6,6 +6,8 @@ import { UpdateEtudiantComponent } from './Dashboard/CrudEtudiants/etudiants/upd
 import { ListeEnseignantComponent } from './Dashboard/Enseignant/liste-enseignant/liste-enseignant.component';
 import { NewEnseignantComponent } from './Dashboard/Enseignant/new-enseignant/new-enseignant.component';
 import { UpdateEnseignantComponent } from './Dashboard/Enseignant/update-enseignant/update-enseignant.component';
+import { StatComponent } from './Dashboard/stat/stat.component';
+import { AdminComponent } from './Dashboard/admin/admin/admin.component';
 
 const routes: Routes = [
   {path:'etudiants',component:EtudiantsComponent},
@@ -15,7 +17,9 @@ const routes: Routes = [
   {path:'new-enseignant',component:NewEnseignantComponent},
   {path:'update-enseignant/:id',component:UpdateEnseignantComponent},
 
+  {path:'stat',component:StatComponent},
 
+  {path:'admin',component:AdminComponent},
 
 
 ];
